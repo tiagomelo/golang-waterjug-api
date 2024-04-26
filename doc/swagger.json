@@ -1,0 +1,71 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "A sample RESTful API for water jug measurements.",
+    "title": "Water Jug API",
+    "contact": {
+      "name": "Tiago Melo",
+      "email": "tiagoharris@gmail.com"
+    },
+    "version": "0.0.1"
+  },
+  "paths": {
+    "/v1/measure": {
+      "post": {
+        "tags": [
+          "measure"
+        ],
+        "summary": "Get measurement.",
+        "operationId": "Get",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/getMeasurementResponse"
+          },
+          "400": {
+            "description": " missing required fields"
+          },
+          "500": {
+            "description": " internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "NewMeasurement": {
+      "type": "object",
+      "properties": {
+        "x_capacity": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "XCap"
+        },
+        "y_capacity": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "YCap"
+        },
+        "z_amount_wanted": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "ZAmountWanted"
+        }
+      },
+      "x-go-package": "github.com/tiagomelo/golang-waterjug-api/measurement/models"
+    }
+  },
+  "responses": {
+    "getMeasurementResponse": {
+      "description": "",
+      "schema": {
+        "$ref": "#/definitions/NewMeasurement"
+      }
+    }
+  }
+}
